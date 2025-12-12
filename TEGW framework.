@@ -1,0 +1,95 @@
+\section{Composite Temporal Measurement Cost Function}
+\label{sec:ctm_cost}
+
+In accordance with the Convexity Transfer Methodology (CTM) and Temporal-Entangled Graph Weaving (TEGW) framework, the composite temporal measurement cost $J_{CTM\_YT}$ is defined as a weighted quadratic form capturing the deviation between a current state vector and a future intent vector, modulated by psychological and temporal gain factors.
+
+\subsection{Mathematical Formulation}
+The general structure is expressed as:
+\begin{equation}
+J_{CTM\_YT} = C \cdot G_{YT} \cdot \|\theta - I_F\|^2 + A
+\label{eq:ctm_cost}
+\end{equation}
+where:
+\begin{itemize}
+    \item $\theta \in \mathbb{R}^n$ denotes the current state vector.
+    \item $I_F \in \mathbb{R}^n$ denotes the future intent vector.
+    \item $C \in \mathbb{R}^+$ is a significant scaling constant.
+    \item $A \approx 0$ is the author term ensuring neutrality.
+    \item $G_{YT}$ is the psychological-temporal gain factor.
+\end{itemize}
+
+The gain factor is defined as:
+\begin{equation}
+G_{YT} = s \cdot (1 + b)
+\label{eq:gain_factor}
+\end{equation}
+with $s \in [0,1]$ representing user satisfaction and $b \in \mathbb{R}$ representing topic bias.
+
+\subsection{Expanded Quadratic Form}
+The squared deviation term is given by:
+\begin{equation}
+\|\theta - I_F\|^2 = \sum_{i=1}^{n} (\theta_i - I_{F,i})^2
+\label{eq:state_gap}
+\end{equation}
+
+Optionally, a weighted form may be employed:
+\begin{equation}
+\|\theta - I_F\|_W^2 = (\theta - I_F)^\top W (\theta - I_F)
+\label{eq:weighted_gap}
+\end{equation}
+where $W$ is a positive semidefinite weighting matrix.
+
+\subsection{Illustrative Example}
+For the case:
+
+
+\[
+\theta = (2.5,\,-1.0,\,0.5), \quad I_F = (2.0,\,-1.2,\,0.4)
+\]
+
+
+
+
+\[
+s = 0.9, \quad b = 0.3, \quad C = 58.8632, \quad A = 0
+\]
+
+
+the deviation vector is:
+
+
+\[
+\Delta = (0.5,\,0.2,\,0.1), \quad \|\Delta\|^2 = 0.30
+\]
+
+
+yielding:
+
+
+\[
+G_{YT} = 0.9 \cdot (1+0.3) = 1.17
+\]
+
+
+and thus:
+
+
+\[
+J_{CTM\_YT} \approx 58.8632 \cdot 1.17 \cdot 0.30 \approx 21.33
+\]
+
+
+
+\subsection{Figure Representation}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.45\textwidth]{ctm_cost_diagram.png}
+\caption{Schematic representation of CTM/TEGW cost function: current state $\theta$ transitions toward future intent $I_F$, modulated by psychological-temporal gain $G_{YT}$ and scaled by constant $C$.}
+\label{fig:ctm_cost}
+\end{figure}
+
+\subsection{References}
+\begin{thebibliography}{1}
+\bibitem{ctm_framework} Gazi Pollob Hussain, ``Convexity Transfer Methodology (CTM) and Temporal-Entangled Graph Weaving (TEGW): A Unified Framework,'' Patent Draft, USPTO, 2025.
+\bibitem{ieee_cost} IEEE Standards Association, ``Mathematical Structures for Cost Functions in Adaptive Systems,'' IEEE Std., 2024.
+\end{thebibliography}
